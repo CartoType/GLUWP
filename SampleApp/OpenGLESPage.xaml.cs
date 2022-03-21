@@ -84,8 +84,6 @@ namespace SampleApp
             Windows.UI.Input.PointerPoint p = aEvent.GetCurrentPoint(this);
             if (p.Properties.IsLeftButtonPressed)
             {
-                m_map_drag_offset_x = 0;
-                m_map_drag_offset_y = 0;
                 aEvent.Handled = true;
             }
         }
@@ -95,11 +93,9 @@ namespace SampleApp
             Windows.UI.Input.PointerPoint p = aEvent.GetCurrentPoint(this);
             if (p.Properties.IsLeftButtonPressed)
             {
-                m_map_drag_offset_x = p.Position.X - m_map_drag_anchor_x;
-                m_map_drag_offset_y = p.Position.Y - m_map_drag_anchor_y;
-                m_framework.Pan((int)-m_map_drag_offset_x,(int)-m_map_drag_offset_y);
-                m_map_drag_offset_x = 0;
-                m_map_drag_offset_y = 0;
+                double dx = Math.Round(m_map_drag_anchor_x - p.Position.X);
+                double dy = Math.Round(m_map_drag_anchor_y - p.Position.Y);
+                m_framework.Pan((int)(dx),(int)(dy));
                 m_map_drag_anchor_x = p.Position.X;
                 m_map_drag_anchor_y = p.Position.Y;
                 aEvent.Handled = true;
@@ -294,8 +290,6 @@ namespace SampleApp
 
         private CartoType.Framework m_framework;
         private CartoType.MapRenderer m_renderer;
-        private double m_map_drag_offset_x;
-        private double m_map_drag_offset_y;
         private double m_map_drag_anchor_x;
         private double m_map_drag_anchor_y;
         private CartoType.Point m_last_point = new CartoType.Point();
