@@ -1,0 +1,909 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+Copyright (C) 2020-2021 CartoType Ltd.
+For more information see http://www.cartotype.com.
+-->
+
+<CartoTypeStyleSheet background='lightblue' border='lightgrey' labelFormat=';ref+" "{font-style:italic}"("name:en")"' landLayer='outline' name='OpenStreetMap style' roadflags='0'>
+    <defs>
+        <icon id='dot-icon' width='3m,1.3pt,6pt'>
+            <svg width="100" height="100">
+                <circle fill="grey" stroke="none" cx="50" cy="50" r="49"/>
+            </svg>
+        </icon>
+        <icon id='peak-icon' width='10m,2.5pt,14pt'>
+            <svg width="100" height="100">
+                <path fill="black" stroke="none" d="M 0 100 L 100 100 L 50 0 z"/>
+            </svg>
+        </icon>
+        <icon id='bar-icon' width='10m,3pt,20pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path fill="ncsred" d="M7.5,1c-2,0-7,0.25-6.5,0.75L7,8v4
+                      c0,1-3,0.5-3,2h7c0-1.5-3-1-3-2V8l6-6.25C14.5,1.25,9.5,1,7.5,1z M7.5,2c2.5,0,4.75,0.25,4.75,0.25L11.5,3h-8L2.75,2.25
+                      C2.75,2.25,5,2,7.5,2z"/>
+            </svg>            
+        </icon>
+        <icon id='pub-icon' width='10m,3pt,20pt'>
+            <svg width="14" height="14" viewBox="0 0 14 14">
+                <path fill="orange+0.3black" d="m 2,1 2,12 6,0 2,-12 z m 1.25,1 7.5,0 -0.33,2 -6.86,0 z"/>
+            </svg>
+        </icon>
+        <icon id='station-icon' width='15m,3pt,30pt'>
+            <svg width="220" height="220">
+                <circle fill="ncsyellow" stroke="grey" stroke-width="20" cx="110" cy="110" r="95"/>
+            </svg>
+        </icon>
+        <icon id='restaurant-icon' width='10m,3pt,20pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path fill="ncsred+ncsyellow" d="M3.5,0l-1,5.5c-0.1464,0.805,1.7815,1.181,1.75,2L4,14c-0.0384,0.9993,1,1,1,1s1.0384-0.0007,1-1L5.75,7.5
+                    c-0.0314-0.8176,1.7334-1.1808,1.75-2L6.5,0H6l0.25,4L5.5,4.5L5.25,0h-0.5L4.5,4.5L3.75,4L4,0H3.5z M12,0
+                    c-0.7364,0-1.9642,0.6549-2.4551,1.6367C9.1358,2.3731,9,4.0182,9,5v2.5c0,0.8182,1.0909,1,1.5,1L10,14c-0.0905,0.9959,1,1,1,1
+                    s1,0,1-1V0z"/>
+            </svg>
+        </icon>
+        <icon id='cafe-icon' width='10m,3pt,20pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path fill="ncsred+ncsyellow" d="M12,5h-2V3H2v4c0.0133,2.2091,1.8149,3.9891,4.024,3.9758C7.4345,10.9673,8.7362,10.2166,9.45,9H12c1.1046,0,2-0.8954,2-2
+                    S13.1046,5,12,5z M12,8H9.86C9.9487,7.6739,9.9958,7.3379,10,7V6h2c0.5523,0,1,0.4477,1,1S12.5523,8,12,8z M10,12.5
+                    c0,0.2761-0.2239,0.5-0.5,0.5h-7C2.2239,13,2,12.7761,2,12.5S2.2239,12,2.5,12h7C9.7761,12,10,12.2239,10,12.5z"/>
+            </svg>
+        </icon>
+        <icon id='hotel-icon' width='10m,3pt,20pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path fill="darkkhaki" d="M0.5,2.5C0.2,2.5,0,2.7,0,3v7.5v2C0,12.8,0.2,13,0.5,13S1,12.8,1,12.5V11h13v1.5
+                    c0,0.3,0.2,0.5,0.5,0.5s0.5-0.2,0.5-0.5v-2c0-0.3-0.2-0.5-0.5-0.5H1V3C1,2.7,0.8,2.5,0.5,2.5z M3.5,3C2.7,3,2,3.7,2,4.5l0,0
+                    C2,5.3,2.7,6,3.5,6l0,0C4.3,6,5,5.3,5,4.5l0,0C5,3.7,4.3,3,3.5,3L3.5,3z M7,4C5.5,4,5.5,5.5,5.5,5.5V7h-3C2.2,7,2,7.2,2,7.5v1
+                    C2,8.8,2.2,9,2.5,9H6h9V6.5C15,4,12.5,4,12.5,4H7z"/>
+            </svg>
+        </icon>
+        <icon id='parking-icon' width='9m,3pt,20pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path fill="ncsblue" d="M11.85,8.37c-0.9532,0.7086-2.1239,1.0623-3.31,1H5.79V14H3V1h5.72c1.1305-0.0605,2.244,0.2952,3.13,1
+                    c0.8321,0.8147,1.2543,1.9601,1.15,3.12C13.1271,6.3214,12.7045,7.5159,11.85,8.37z M9.75,3.7C9.3254,3.3892,8.8052,3.237,8.28,3.27
+                    H5.79v3.82h2.49c0.5315,0.0326,1.056-0.1351,1.47-0.47c0.3795-0.3947,0.5693-0.9346,0.52-1.48C10.324,4.606,10.1327,4.0763,9.75,3.7
+                    z"/>
+            </svg>
+        </icon>
+        <icon id='theatre-icon' width='10m,3pt,20pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path d="M2,1c0,0-1,0-1,1v5.1582C1,8.8885,1.354,11,4.5,11H5V8L2.5,9c0,0,0-2.5,2.5-2.5V5
+                    c0-0.7078,0.0868-1.3209,0.5-1.7754C5.8815,2.805,6.5046,1.9674,8.1562,2.7539L9,3.3027V2c0,0,0-1-1-1C7.2922,1,6.0224,2,5,2
+                    S2.7865,1,2,1z M3,3c0.5523,0,1,0.4477,1,1S3.5523,5,3,5S2,4.5523,2,4S2.4477,3,3,3z M7,4c0,0-1,0-1,1v5c0,2,1,4,4,4s4-2,4-4V5
+                    c0-1-1-1-1-1c-0.7078,0-1.9776,1-3,1S7.7865,4,7,4z M8,6c0.5523,0,1,0.4477,1,1S8.5523,8,8,8S7,7.5523,7,7S7.4477,6,8,6z M12,6
+                    c0.5523,0,1,0.4477,1,1s-0.4477,1-1,1s-1-0.4477-1-1S11.4477,6,12,6z M7.5,10H10h2.5c0,0,0,2.5-2.5,2.5S7.5,10,7.5,10z"/>
+            </svg>
+        </icon>
+        <icon id='cinema-icon' width='10m,3pt,20pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path d="M14,7.5v2c0,0.2761-0.2239,0.5-0.5,0.5S13,9.7761,13,9.5c0,0,0.06-0.5-1-0.5h-1v2.5c0,0.2761-0.2239,0.5-0.5,0.5h-8
+                    C2.2239,12,2,11.7761,2,11.5v-4C2,7.2239,2.2239,7,2.5,7h8C10.7761,7,11,7.2239,11,7.5V8h1c1.06,0,1-0.5,1-0.5
+                    C13,7.2239,13.2239,7,13.5,7S14,7.2239,14,7.5z M4,3C2.8954,3,2,3.8954,2,5s0.8954,2,2,2s2-0.8954,2-2S5.1046,3,4,3z M4,6
+                    C3.4477,6,3,5.5523,3,5s0.4477-1,1-1s1,0.4477,1,1S4.5523,6,4,6z M8.5,2C7.1193,2,6,3.1193,6,4.5S7.1193,7,8.5,7S11,5.8807,11,4.5
+                    S9.8807,2,8.5,2z M8.5,6C7.6716,6,7,5.3284,7,4.5S7.6716,3,8.5,3S10,3.6716,10,4.5S9.3284,6,8.5,6z"/>
+            </svg>
+        </icon>
+        <icon id='atm-icon' width='20m,6pt,30pt'>
+            <svg viewBox="0 0 53 63" fill="#009F30" stroke="white" stroke-width="2">
+                <g transform="translate(3,3)">
+                    <rect x="0" y="20" width="40" height="20"/>
+                </g>
+                <g transform="translate(6,6)">
+                    <rect x="0" y="20" width="40" height="20"/>
+                    <rect fill="none" stroke-width="1.5" x="3" y="24" width="34" height="12"/>
+                    <rect fill="white" stroke="none" x="13" y="26" width="2" height="8"/>
+                    <circle fill="none" stroke-width="2" cx="23" cy="30" r="4"/>
+                </g>
+            </svg>
+        </icon>
+        <icon id='pharmacy-icon' width='10m,3pt,20pt'>
+            <svg viewBox="0 0 36 36" height="62">
+                <rect fill="#009F30" x="0" y="0" width="36" height="36" rx="2" ry="2"/>
+                <path fill="white" d="M20.14 17.3 L20.14 9.44 L11.86 9.44 L11.86 17.3 L4 17.3 
+            L4 25.58 L11.86 25.58 L11.86 33.44 L20.14 33.44 L20.14 25.58 L28 25.58 L28 17.3 L20.14 17.3 Z
+            M0.5 37.44 L31.5 37.44 a0.5 0.5 -180 0 0 0.5 -0.5 L32 5.94 a0.5 0.5 -180 0 0 -0.5 -0.5
+            L0.5 5.44 a0.5 0.5 -180 0 0 -0.5 0.5 L0 36.94 a0.5 0.5 -180 0 0 0.5 0.5 Z M2 35.44 L2 
+            7.44 L30 7.44 L30 35.44 L2 35.44 Z" transform="translate(2,-3.44)"/>
+            </svg>
+        </icon>
+        <icon id='toilet-icon' width='10m,3pt,20pt'>
+            <svg viewBox="0 0 200 200" width="18.64" height="18.64">
+                <rect fill="#009F30" width="200" height="200" x="0" y="0" rx="40" ry="40"/>
+                <rect style="fill:#ffffff;stroke:#ffffff;stroke-width:5px;stroke-linejoin:round;stroke-opacity:1" y="30.489416" x="100.1455" height="141.07143" width="11.428572"/>
+                <path style="fill:#ffffff;stroke:#ffffff;stroke-opacity:1" d="M 162.85978,41.739417 C 162.85978,48.366834 157.4872,53.739417 150.85978,53.739417 C 144.23236,53.739417 138.85978,48.366834 138.85978,41.739417 C 138.85978,35.112 144.23236,29.739417 150.85978,29.739417 C 157.4872,29.739417 162.85978,35.112 162.85978,41.739417 L 162.85978,41.739417 z "/>
+                <path style="fill:#ffffff;stroke:#ffffff;stroke-linejoin:round;stroke-opacity:1" d="M 69.645503,42.989417 C 69.645503,49.616834 64.27292,54.989417 57.645503,54.989417 C 51.018086,54.989417 45.645503,49.616834 45.645503,42.989417 C 45.645503,36.362 51.018086,30.989417 57.645503,30.989417 C 64.27292,30.989417 69.645503,36.362 69.645503,42.989417 z "/>
+                <path style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 54.920897,128.44734 L 59.466584,128.44734 L 60.224198,168.6009 L 67.547804,168.6009 L 68.305419,128.1948 L 80.427249,127.94226 L 67.295266,79.707479 L 70.8308,77.687174 L 81.437402,112.53743 L 89.266084,108.24428 L 73.356181,61.777271 L 41.283838,60.767119 L 24.868859,109.25444 L 31.939927,112.03236 L 43.556681,77.687174 L 46.839677,78.19225 L 33.707694,127.43718 L 44.819372,127.68972 L 46.334601,168.85344 L 53.658207,168.85344 L 54.920897,128.44734 z "/>
+                <path style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;fill-opacity:1" d="M 133.96533,60.514581 L 164.77498,60.262042 L 174.87651,68.090725 L 176.64428,113.29505 L 167.80544,113.04251 L 166.79529,77.182098 L 162.2496,76.677021 L 162.37587,168.97971 L 153.91584,169.23224 L 152.14808,114.3052 L 147.85493,114.05266 L 146.84478,169.61105 L 139.01609,169.10598 L 138.51102,77.434636 L 133.71279,77.434636 L 134.21787,112.53743 L 125.63157,112.78997 L 124.87396,68.595801 L 133.96533,60.514581 z "/>
+            </svg>
+        </icon>
+        <icon id='airport-icon' width='100m,6pt,18pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path fill="ncsred+ncsyellow" d="M15,6.8182L15,8.5l-6.5-1
+                    l-0.3182,4.7727L11,14v1l-3.5-0.6818L4,15v-1l2.8182-1.7273L6.5,7.5L0,8.5V6.8182L6.5,4.5v-3c0,0,0-1.5,1-1.5s1,1.5,1,1.5v2.8182
+                    L15,6.8182z"/>
+            </svg>
+        </icon>
+        <icon id='fuel-icon' width='15m,8pt,30pt'>
+            <svg width="15" height="15" viewBox="0 0 15 15">
+                <path fill="ncsblue" d="M13,6L13,6v5.5c0,0.2761-0.2239,0.5-0.5,0.5S12,11.7761,12,11.5v-2C12,8.6716,11.3284,8,10.5,8H9V2c0-0.5523-0.4477-1-1-1H2
+                    C1.4477,1,1,1.4477,1,2v11c0,0.5523,0.4477,1,1,1h6c0.5523,0,1-0.4477,1-1V9h1.5C10.7761,9,11,9.2239,11,9.5v2
+                    c0,0.8284,0.6716,1.5,1.5,1.5s1.5-0.6716,1.5-1.5V5c0-0.5523-0.4477-1-1-1l0,0V2.49C12.9946,2.2178,12.7723,1.9999,12.5,2
+                    c-0.2816,0.0047-0.5062,0.2367-0.5015,0.5184C11.9987,2.5289,11.9992,2.5395,12,2.55V5C12,5.5523,12.4477,6,13,6s1-0.4477,1-1
+                    s-0.4477-1-1-1 M8,6.5C8,6.7761,7.7761,7,7.5,7h-5C2.2239,7,2,6.7761,2,6.5v-3C2,3.2239,2.2239,3,2.5,3h5C7.7761,3,8,3.2239,8,3.5
+                    V6.5z"/>
+            </svg>
+        </icon>
+        <icon id='traffic-light-icon' width='7m,6pt'>
+            <svg viewBox="0 0 560 560">
+                <g transform="translate(167,0)" fill="dimgrey">
+                    <path d="M212.1,105c0,58-47.5,105-106,105c-58.6,0-106-47-106-105 C0,47,47.5,0,106,0C164.6,0,212.1,47,212.1,105z"/>
+                    <path d="M212.1,452.3c0,58-47.5,105-106,105c-58.6,0-106-47-106-105 c0-58,47.5-105,106-105C164.6,347.3,212.1,394.3,212.1,452.3z"/>
+                    <path d="M211.3,458.9H0V106.7h211.3V458.9z"/>
+                    <path fill="ncsred" d="M190,103c0,46.4-37.6,84-84,84 c-46.4,0-84-37.6-84-84s37.6-84,84-84C152.4,19,190,56.6,190,103z"/>
+                    <path fill="ncsgreen" d="M190,455c0,46.4-37.6,84-84,84 c-46.4,0-84-37.6-84-84c0-46.4,37.6-84,84-84C152.4,371.1,190,408.7,190,455z"/>
+                    <path fill="ncsyellow" d="M190,279c0,46.4-37.6,84-84,84 c-46.4,0-84-37.6-84-84c0-46.4,37.6-84,84-84C152.4,195,190,232.6,190,279z"/>
+                </g>
+            </svg>
+        </icon>
+        <icon id='pushpin-icon' hotSpotY='100%' width='20m,12pt,24pt'>
+            <svg width="400" height="400">
+                <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,
+                                129.896,250.388l4.951,6.738c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,
+                                1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
+                                C335.179,61.609,273.569,0,197.849,0z"
+                    fill="black" opacity="0.5" />
+            </svg>
+        </icon>
+        <icon id='large-pushpin-icon' hotSpotY='100%' labelY='-62.5%' width='30m,18pt,36pt'>
+            <svg width="400" height="400">
+                <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,
+                                129.896,250.388l4.951,6.738c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,
+                                1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
+                                C335.179,61.609,273.569,0,197.849,0z"
+                    fill="black" opacity="0.7" />
+            </svg>
+        </icon>
+        <rampGradient id='terrain-feet-height-ramp'>
+            <stop color='darkseagreen+white' offset='100ft-height'/>
+            <stop color='palegreen+white' offset='600ft-height'/>
+            <stop color='palegoldenrod+white' offset='1200ft-height'/>
+            <stop color='burlywood+white' offset='3000ft-height'/>
+            <stop color='lightsalmon+white' offset='4500ft-height'/>
+            <stop color='#BBBBBB+white' offset='6000ft-height'/>
+            <stop color='#CCCCCC+white' offset='9000ft-height'/>
+            <stop color='#EEEEEE+white' offset='12000ft-height'/>
+            <stop color='white' offset='18000ft-height'/>
+            <stop color='white' offset='30000ft-height'/>
+            <range color='#00000000' end='1' start='0'/>
+            <range color='darkseagreen+white' end='100ft-height' start='1'/>
+        </rampGradient>
+        <rampGradient id='pale-terrain-feet-height-ramp'>
+            <stop color='darkseagreen+0.7white' offset='100ft-height'/>
+            <stop color='palegreen+0.7white' offset='600ft-height'/>
+            <stop color='palegoldenrod+0.7white' offset='1200ft-height'/>
+            <stop color='burlywood+0.7white' offset='3000ft-height'/>
+            <stop color='lightsalmon+0.7white' offset='4500ft-height'/>
+            <stop color='#BBBBBB+0.7white' offset='6000ft-height'/>
+            <stop color='#CCCCCC+0.7white' offset='9000ft-height'/>
+            <stop color='#EEEEEE+0.7white' offset='12000ft-height'/>
+            <stop color='white' offset='18000ft-height'/>
+            <stop color='white' offset='30000ft-height'/>
+            <range color='#00000000' end='1' start='0'/>
+            <range color='darkseagreen+0.7white' end='100ft-height' start='1'/>
+        </rampGradient>
+        <def id='broad-arrow' string='M -450 -50 V 50 H 250 L -100 400 H 50 L 450 0 L 50 -400 H -100 L 250 -50 H -450 Z'/>
+        <def id='arrow' string='M -350 25 V -25 H 0 V -100 L 250 0 L 0 100 V 25 Z'/>
+        <def id='location-arrow' string='M -500 -500 L 500 0 L -500 500 L -300 0 Z'/>
+        <macro id='minor-road-label'>
+            <scale max='40000'>
+                <label case='assume-title' color='dimgrey' font-size='75%,5pt,12pt' glow='white' glowWidth='7%,0.5pt' priority='-2' wrapLines='0'/>
+            </scale>
+        </macro>
+        <macro id='grey-tunnel'>
+            <scale max='75000'>
+                <tunnel dashArray='1.5,1.5' fill='lightgrey'/>
+            </scale>
+        </macro>
+        <macro id='standard-tunnel'>
+            <scale max='75000'>
+                <tunnel dashArray='1.5,1.5' fade='0.3'/>
+            </scale>
+        </macro>
+        <macro id='standard-bridge'>
+            <scale max='40000'>
+                <bridge border='dimgrey+white' borderWidth='8%,0.5pt' endPath='l 200 200' width='150%'/>
+            </scale>
+        </macro>
+        <macro id='island-label'>
+            <label case='assume-title' color='darkslategrey' font-size='150m,6pt,18pt' font-style='italic' font-weight='bold' glow='white' glowWidth='7%,0.5pt' position='horizontal' wrapWidth='12em' priority='-4' duplicate='10000m,1024pt' />
+        </macro>
+        <macro id='point-island-label'>
+            <label case='assume-title' color='darkslategrey' font-size='150m,6pt,18pt' font-style='italic' font-weight='bold' glow='white' glowWidth='7%,0.5pt' maxScale='50000' position='point' wrapWidth='12em' priority='-4' duplicate='10000m,1024pt' />
+        </macro>
+        <macro id='pushpin'>
+            <condition exp='Type le ~type~'>
+                <icon ref='pushpin-icon' color='~color~' colorAttrib='_color' canOverlap='true'/>
+                <label case='assume-title' color='~color~' font-size='12m,6pt,12pt' glow='white' glowWidth='7%,0.5pt' priority='-20' wrapWidth='5em'/>
+            </condition>
+        </macro>
+        <macro id='route-highlight'>
+            <highlight distance='6m@6000_30m@40000' fill='~color~' width='1.5m@6000_18m@40000,1.5pt'/>
+            <highlight distance='-6m@6000_-30m@40000' fill='~color~' width='1.5m@6000_18m@40000,1.5pt'/>
+            <line fill='none' width='8m@6000_50m@40000,1.5pt'/>
+        </macro>
+        <macro id='traffic-highlight'>
+            <condition exp='(Type bitand 0xFF) le ~maxspeed~'>
+                <shape fill='~color~' opacity='0.3'/>
+                <condition exp='(Type bitand 0x100) != 0'>
+                    <highlight distance='6m@4000_30m@50000' fill='~color~' opacity='0.5' width='6m@6000_30m@75000,1pt'/>
+                </condition>
+                <condition exp='(Type bitand 0x200) != 0'>
+                    <highlight distance='-6m@4000_-30m@50000' fill='~color~' opacity='0.5' width='6m@6000_30m@75000,1pt'/>
+                </condition>
+            </condition>
+        </macro>
+        <macro id='one-way-arrow'>
+            <oneWayArrow fill='~color~' gap='2500'  opacity='0.5' path='#arrow'/>
+        </macro>
+        <hachure angle='90' color='blue+0.9white' id='wetland-hachure' interval='2.5pt' width='0.75pt'/>
+        <hachure angle='135' color='red' id='warning-hachure' interval='3pt' width='1pt'/>
+        <macro id='water'>
+            <condition exp='OsmType in { "wat","rvb","doc","rsv" }'>
+                <shape fill='lightblue'/>
+                <label case='assume-title' color='ncsblue' font-size='25m,5pt,8pt' font-style='italic' position='horizontal'  maxPolygonLabelExtra='1' maxPolygonLabelLength='3'/>
+            </condition>
+            <condition exp='OsmType in { "bay","stt" }'>
+                <shape fill='none'/>
+                <label case='assume-title' color='ncsblue' font-size='25m,5pt,8pt' font-style='italic' position='horizontal' maxPolygonLabelExtra='0'/>
+            </condition>
+        </macro>
+        <macro id='water-minor'>
+            <scale max='150000'>
+                <condition exp='OsmType=="wet"'>
+                    <shape fill='url(#wetland-hachure)'/>
+                    <label color='ncsblue' font-style='italic' maxScale='100000' position='horizontal'/>
+                </condition>
+            </scale>
+            <scale max='40000'>
+                <condition exp='OsmType in { "spr","waf" }'>
+                    <label color='ncsblue' font-style='italic' position='point'/>
+                </condition>
+            </scale>
+        </macro>
+    </defs>
+    <if exp='GL'>
+        <layer name='map-border'>
+            <shape fill='lightgrey'/>
+        </layer>
+    </if>
+    <layer name='map-extent'>
+        <shape fill='lightblue'/>
+    </layer>
+    <layer name='outline'>
+        <shape fill='white'/>
+        <condition exp='@=2'>
+            <condition exp='OsmType=="isl"'>
+                <scale max='40000'>
+                    <condition exp='(Type bitand 0xFFF) gt 5'>
+                        <label case='assume-title' color='darkslategrey' font-size='100m,5pt,18pt' font-style='italic' font-weight='bold' opacity='0.4' priority='2' wrapWidth='12em'/>
+                    </condition>
+                </scale>
+                <scale min='40000' max='1000000'>
+                    <condition exp='(Type bitand 0xFFF) gt 2'>
+                        <macro ref='island-label'/>
+                    </condition>
+                </scale>
+                <scale min='1000000' max='15000000'>
+                    <macro ref='island-label'/>
+                </scale>
+            </condition>
+        </condition>
+    </layer>
+    <layer name='image'>
+        <shape fill='white'/>
+    </layer>
+    <scale min='20000'>
+        <layer name='terrain-height-feet'>
+            <shape fill='url(#terrain-feet-height-ramp)'/>
+        </layer>
+        <layer name='terrain-shadow'>
+            <shape fill='#772'/>
+        </layer>
+    </scale>
+    <scale min='150000'>
+        <layer name='urban-area'>
+            <shape fill='khaki+0.2orange+0.4white' opacity='0.4'/>
+        </layer>
+    </scale>
+    <scale min='1500000'>
+        <layer name='boundary/major'>
+            <condition exp='@=1'>
+                <line dashArray='5 1 1 1' fill='grey+orange' opacity='0.5' width='0.6pt'/>
+            </condition>
+            <condition exp='@=2'>
+                <label case='upper' color='grey+orange' font-size='8pt' font-weight='bold' letter-spacing='0.2em' opacity='0.5' position='horizontal' priority='-4' wrapWidth='20em'/>
+            </condition>
+        </layer>
+    </scale>
+                
+    <scale max='3000000' min='750000'>
+        <layer name='boundary/minor'>
+            <condition exp='(Type bitand #FFFF)=4'>
+                <condition exp='@=1'>
+                    <line dashArray='2 1 1 1' fill='grey+orange' opacity='0.5' width='0.6pt'/>
+                </condition>
+                <condition exp='@=2'>
+                    <label case='upper' color='grey+orange' font-size='7pt' letter-spacing='0.2em' opacity='0.5' position='horizontal' priority='-3' wrapWidth='20em'/>
+                </condition>
+            </condition>
+        </layer>
+    </scale>
+    <scale max='50000000' min='40000'>
+        <layer name='place/major'>
+            <label case='assume-title' color='darkslategrey' duplicate='10000m,1024pt' font-size='130m,5pt,16pt' glow='white' glowWidth='7%,0.5pt' position='point' priority='0' wrapWidth='12em'/>
+            <condition exp='OsmType=="cit"'>
+                <scale max='3000000'>
+                    <label color='dimgrey' font-size='200m,7pt,24pt' font-weight='bold' priority='-6'/>
+                </scale>
+                <scale min='3000000'>
+                    <label color='dimgrey' font-size='200m,7pt,24pt' priority='-6'/>
+                </scale>
+                <condition exp='capital=="yes"'>
+                    <label font-size='200m,7pt,24pt' priority='-7'/>
+                </condition>
+            </condition>
+            <scale max='1500000'>
+                <condition exp='OsmType=="tow"'>
+                    <label font-size='200m,7pt,24pt' priority='-5'/>
+                </condition>
+            </scale>
+            <condition exp='OsmType=="isl"'>
+                <condition exp='@=0'>
+                    <macro ref='point-island-label'/>
+                </condition>
+                <condition exp='@=2'>
+                    <macro ref='island-label'/>
+                </condition>
+            </condition>
+        </layer>
+    </scale>
+    <scale max='100000'>
+        <layer name='place/minor'>
+            <label case='assume-title' color='darkslategrey' duplicate='10000m,512pt' font-size='130m,5pt,16pt' glow='white' glowWidth='7%,0.5pt' position='point' priority='0' wrapWidth='10em'/>
+            <scale min='40000'>
+                <condition exp='OsmType=="vil"'/>
+                <condition exp='OsmType=="sub"'/>
+            </scale>
+            <scale max='80000' min='40000'>
+                <condition exp='OsmType=="ham"'/>
+            </scale>
+            <scale max='40000'>
+                <condition exp='OsmType in { "loc","iso","far" }'>
+                    <label case='assume-title' color='darkslategrey' font-size='50m,4pt,12pt' font-weight='bold' opacity='0.4' position='point'/>
+                </condition>
+            </scale>
+        </layer>
+    </scale>
+    <layer name='land/major'>
+        <label case='assume-title' color='mediumseagreen' condense='no' font-size='25m,5pt,8pt' glow='white' glowWidth='7%,0.5pt' maxPolygonLabelLength='2' position='horizontal' wrap='yes' wrapWidth='10em'/>
+        <condition exp='OsmType in { "for","woo" }'>
+            <shape fill='limegreen+0.2red' opacity='0.3'/>
+        </condition>
+        <macro ref='water'/>
+        <condition exp='OsmType=="gla"'>
+            <shape fill='white' opacity='0.5'/>
+            <label color='lightblue' maxScale='150000'/>
+        </condition>
+    </layer>
+    <scale max='150000'>
+        <layer name='land/minor'>
+            <label case='assume-title' color='mediumseagreen' condense='no' font-size='10m,5pt,8pt' glow='white' glowWidth='7%,0.5pt' maxPolygonLabelLength='2' position='horizontal' wrap='yes' wrapWidth='10em'/>
+            <scale max='75000'>
+                <condition exp='OsmType in { "cmr","ind" }'>
+                    <shape fill='lavender+white'/>
+                </condition>
+                <condition exp='OsmType in { "par","gol","com" }'>
+                    <shape fill='lightgreen' opacity='0.3'/>
+                </condition>
+                <condition exp='OsmType=="gra"'>
+                    <shape fill='limegreen+0.2yellow' opacity='0.3'/>
+                </condition>
+            </scale>
+            <scale max='150000'>
+                <condition exp='OsmType in { "all","cem","gho","mea","orc","pla","vin","vig","rec" }'>
+                    <shape fill='yellowgreen+white' opacity='0.3'/>
+                </condition>
+            </scale>
+            <scale max='150000'>
+                <condition exp='OsmType in { "bro","cns","fay","gar","gre","lan","mil","qar","rly","sal" }'>
+                    <shape fill='lightgrey' opacity='0.3'/>
+                </condition>
+            </scale>
+            <scale max='150000'>
+                <condition exp='OsmType=="pea" and _munro=="yes"'>
+                    <label case='assume-title' color='ncsred' labelFormat=';+{font-style:italic}"("name:en")"+{font-style:roman}" ["_munro_number"]"+" "_ele' wrapLines='0' wrapWidth='10em'/>
+                    <icon ref='peak-icon' color='ncsred'/>
+                </condition>
+                <condition exp='OsmType in { "fel","pea","vol" }'>
+                    <label case='assume-title' color='grey' labelFormat=';+" "{font-style:italic}"("name:en")"+" "_ele' wrapWidth='10em'/>
+                    <icon ref='peak-icon' color='grey'/>
+                </condition>
+            </scale>
+            <condition exp='OsmType in { "bea","san" }'>
+                <shape fill='yellow+0.75white'/>
+                <label color='yellow+0.3black' font-style='italic' position='point'/>
+            </condition>
+            <scale max='150000'>
+                <condition exp='OsmType=="apr"'>
+                    <shape fill='lightgrey' opacity='0.5'/>
+                </condition>
+            </scale>
+            <macro ref='water-minor'/>
+        </layer>
+    </scale>
+    <layer name='waterway/major'>
+        <label case='assume-title' color='ncsblue' duplicate='1000m,512pt' font-style='italic' glow='white' glowWidth='7%,0.5pt' position='centralpath' priority='1'/>
+        <line fill='lightblue'/>
+        <shape fill='lightblue'/>
+        <macro ref='water'/>
+        <scale max='750000'>
+            <condition exp='OsmType=="riv"'>
+                <line width='20m,0.6pt'/>
+                <label font-size='75%,5pt,18pt' maxScale='400000'/>
+            </condition>
+            <condition exp='OsmType=="can"'>
+                <line width='8m,0.6pt'/>
+                <label font-size='75%,5pt,18pt' maxScale='2400000'/>
+            </condition>
+        </scale>
+    </layer>
+    <scale max='150000'>
+        <layer name='waterway/minor'>
+            <label case='assume-title' color='ncsblue' duplicate='1000m,512pt' font-style='italic' glow='white' glowWidth='7%,0.5pt' position='centralpath' priority='1'/>
+            <line fill='lightblue'/>
+            <shape fill='lightblue'/>
+            <condition exp='OsmType=="str"'>
+                <line width='4m,0.3pt'/>
+                <label font-size='75%,5pt,18pt'/>
+            </condition>
+            <condition exp='OsmType=="dra"'>
+                <line width='2m,0.3pt'/>
+                <label font-size='75%,5pt,18pt'/>
+            </condition>
+            <macro ref='water-minor'/>
+        </layer>
+    </scale>
+    <layerGroup>
+        <scale max='150000'>
+            <layer name='road/minor' road='true'>
+                <condition exp='RoadType == "pedestrian"'>
+                    <line border='dimgrey+white' borderWidth='8%,0.25pt,1pt' dashArray='2,0.1' fill='orange+0.9white' width='8m@6000_10m@40000,0.3pt'/>
+                    <macro ref='minor-road-label'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='standard-tunnel'/>
+                </condition>
+                <condition exp='RoadType == "service"'>
+                    <line border='dimgrey+white' borderWidth='8%,0.35pt,1pt' fill='white' width='5m@6000_10m@40000,0.3pt'/>
+                    <macro ref='minor-road-label'/>
+                    <macro color='lightgrey' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='grey-tunnel'/>
+                </condition>
+                <condition exp='RoadType == "track"'>
+                    <line fill='grey+0.5white' dashArray='1,1' width='2m@6000_10m@40000,0.3pt'/>
+                    <macro ref='minor-road-label'/>
+                    <macro color='lightgrey' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='grey-tunnel'/>
+                </condition>
+                <condition exp='RoadType == "residential"'>
+                    <line border='dimgrey+white' borderWidth='8%,0.35pt,1pt' fill='ivory' width='10m@6000_25m@40000,0.3pt'/>
+                    <macro ref='minor-road-label'/>
+                    <macro color='lightgrey' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='grey-tunnel'/>
+                </condition>
+                <condition exp='RoadType == "unclassified"'>
+                    <line border='dimgrey+white' borderWidth='8%,0.35pt,1pt' fill='orange+khaki+0.9white' width='10m@6000_40m@40000,0.3pt'/>
+                    <macro ref='minor-road-label'/>
+                    <macro color='lightgrey' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='grey-tunnel'/>
+                </condition>
+            </layer>
+        </scale>
+        <scale max='1500000'>
+            <layer name='road/mid' road='true'>
+                <condition exp='RoadType in { "tertiary", "tertiary link" }'>
+                    <line border='dimgrey' borderWidth='8%,0.35pt,1pt' fill='orange+khaki+0.8white' width='10m@6000_40m@40000,0.3pt'/>
+                    <macro ref='minor-road-label'/>
+                    <macro color='darkkhaki' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='grey-tunnel'/>
+                </condition>
+                <condition exp='RoadType in { "secondary", "secondary link" }'>
+                    <line border='dimgrey' borderWidth='8%,0.35pt,1pt' fill='orange+khaki+0.6white' width='10m@6000_40m@40000,0.6pt'/>
+                    <scale max='75000'>
+                        <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' glow='white' glowWidth='7%,0.5pt' labelFormat=';+" "ref' maxScale='75000'/>
+                    </scale>
+                    <macro color='darkkhaki+black' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='standard-tunnel'/>
+                </condition>
+            </layer>
+        </scale>
+        <layer name='road/major' road='true'>
+            <scale max='3000000'>
+                <condition exp='RoadType in { "primary", "primary link" }'>
+                    <line border='dimgrey' borderWidth='8%,0.35pt,1pt' fill='orange+0.6white' width='12m@6000_72m@75000,0.5pt'/>
+                    <scale max='50000'>
+                        <label case='upper' color='dimgrey' duplicate='1000m,128pt' font-size='75%,5pt,18pt' glow='white' glowWidth='7%,0.5pt' labelFormat=';' maxScale='100000'/>
+                    </scale>
+                    <scale max='250000'>
+                        <label baseline='central-caps' color='dimgrey+0.25white' condense='no' duplicate='1000m,256pt' font-size='80%,5pt,18pt' labelFormat='{[padding:20%,0.6pt;background-color:orange+0.8white;border-color:dimgrey+0.25white;border-width:12%,0.7;border-radius:50%,1.2pt}ref{]}' wrapLines='0' wrapWidth='30em'/>
+                    </scale>
+                    <macro color='slategrey' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='standard-tunnel'/>
+                </condition>
+            </scale>
+            <scale max='1500000'>
+                <condition exp='RoadType == "trunk link"'>
+                    <line border='dimgrey' borderWidth='8%,0.35pt,1pt' fill='orange+0.5white' width='10m@6000_60m@75000,0.5pt'/>
+                    <scale max='75000'>
+                        <label case='upper' color='dimgrey' duplicate='1000m,128pt' font-size='75%,5pt,18pt' glow='white' glowWidth='7%,0.5pt' labelFormat=';' letter-spacing='0.2em' word-spacing='0.1em'/>
+                    </scale>
+                    <macro color='slategrey' ref='one-way-arrow'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='standard-tunnel'/>
+                </condition>
+            </scale>
+            <condition exp='RoadType == "trunk"'>
+                <line border='dimgrey' borderWidth='8%,0.35pt,1pt' fill='orange+0.5white' width='12m@6000_72m@75000,0.5pt'/>
+                <scale max='500000'>
+                    <label baseline='central-caps' color='dimgrey+0.25white' condense='no' duplicate='1000m,256pt' font-size='75%,5pt,18pt' labelFormat='{[padding:20%,0.6pt;background-color:orange+0.6white;border-color:dimgrey+0.25white;border-width:12%,0.7;border-radius:50%,1.2pt}ref{]}' wrapLines='0' wrapWidth='30em'/>
+                </scale>
+                <scale max='50000'>
+                    <label case='upper' color='dimgrey' duplicate='1000m,128pt' font-size='75%,5pt,18pt' glow='white' glowWidth='7%,0.5pt' labelFormat=';' letter-spacing='0.2em' word-spacing='0.1em'/>
+                </scale>
+                <macro color='slategrey' ref='one-way-arrow'/>
+                <macro ref='standard-bridge'/>
+                <macro ref='standard-tunnel'/>
+            </condition>
+            <scale max='1500000'>
+                <condition exp='RoadType == "motorway link"'>
+                    <line border='dimgrey' borderWidth='8%,0.35pt,1pt' fill='orange+0.03black+0.2white' width='10m@6000_60m@75000,0.6pt'/>
+                    <scale max='75000'>
+                        <label case='upper' color='dimgrey' font-size='65%,5pt,18pt' glow='white' glowWidth='7%,0.5pt' labelFormat=';'/>
+                    </scale>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='standard-tunnel'/>
+                </condition>
+            </scale>
+            <condition exp='RoadType == "motorway"'>
+                <line border='dimgrey' borderWidth='8%,0.35pt,1pt' fill='orange+0.03black+0.2white' width='12m@6000_100m@75000,0.75pt'/>
+                <scale max='75000'>
+                    <label case='upper' color='dimgrey' duplicate='1000m,256pt' font-size='75%,5pt,18pt' glow='white' glowWidth='7%,0.5pt' labelFormat=';'/>
+                </scale>
+                <scale max='6000000'>
+                    <label baseline='central-caps' color='dimgrey+0.25white' condense='no' duplicate='1000m,256pt' font-size='90%,5pt,18pt' font-weight='bold' labelFormat='{[padding:20%,0.6pt;background-color:orange+0.5white;border-color:dimgrey+0.25white;border-width:12%,0.7;border-radius:50%,1.2pt}ref{]}' wrapLines='0' wrapWidth='30em'/>
+                </scale>
+                <macro ref='standard-bridge'/>
+                <macro ref='standard-tunnel'/>
+            </condition>
+        </layer>
+        <scale max='6000000'>
+            <layer name='ferry' road='true'>
+                <condition exp='RoadType == "vehicular ferry"'>
+                    <line dashArray='2,1' fill='lightblue+0.2black' width='1m,0.3pt,1.2pt'/>
+                    <scale max='400000'>
+                        <label case='assume-title' color='lightblue+0.2black' font-size='10m,5pt,18pt' glow='lightblue' glowWidth='7%,0.5'/>
+                    </scale>
+                </condition>
+                <condition exp='RoadType == "passenger ferry"'>
+                    <line dashArray='1,1' fill='lightblue+0.2black' width='0.5m,0.3pt,0.6pt'/>
+                    <scale max='400000'>
+                        <label case='assume-title' color='lightblue+0.2black' font-size='10m,5pt,18pt' glow='lightblue' glowWidth='7%,0.5'/>
+                    </scale>
+                </condition>
+            </layer>
+        </scale>
+    </layerGroup>
+    <scale max='400000'>
+        <layer name='railway' roadflags='#1F001'>
+            <condition exp='OsmType in { "rly","pry" }'>
+                <line border='darkgrey' borderWidth='10%,0.35pt,1pt' fill='lightgrey' width='3m,0.6pt'/>
+                <scale max='7500'>
+                    <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' glow='white' glowWidth='7%,0.5pt'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='standard-tunnel'/>
+                </scale>
+            </condition>
+            <condition exp='OsmType in { "nar","tra","lir","swy" }'>
+                <line border='darkgrey' borderWidth='10%,0.35pt,1pt' fill='lightgrey' width='2m,0.6pt'/>
+                <scale max='7500'>
+                    <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' glow='white' glowWidth='7%,0.5pt'/>
+                    <macro ref='standard-bridge'/>
+                    <macro ref='standard-tunnel'/>
+                </scale>
+            </condition>
+        </layer>
+    </scale>
+    <scale max='40000'>
+        <layer name='path' roadflags='#1F001'>
+            <condition exp='OsmType in { "foo","wlk","hik" }'>
+                <line dashArray='2,2' fill='orange' width='1m,0.3pt'/>
+                <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' font-style='italic' glow='white' glowWidth='7%,0.5pt'/>
+                <macro ref='standard-bridge'/>
+            </condition>
+            <condition exp='OsmType=="bri"'>
+                <line dashArray='4,2' fill='orange' width='1.5m,0.5pt'/>
+                <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' font-style='italic' glow='white' glowWidth='7%,0.5pt'/>
+                <macro ref='standard-bridge'/>
+            </condition>
+            <condition exp='OsmType=="ski"'>
+                <line dashArray='4,2' fill='ncsred' width='1.5m,0.5pt'/>
+                <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' font-style='italic' glow='white' glowWidth='7%,0.5pt'/>
+                <macro ref='standard-bridge'/>
+            </condition>
+            <condition exp='OsmType=="ste"'>
+                <line dashArray='0.5,0.5' fill='orange' width='2m,1pt'/>
+                <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' font-style='italic' glow='white' glowWidth='7%,0.5pt'/>
+                <macro ref='standard-bridge'/>
+            </condition>
+            <condition exp='OsmType=="cyc" or OsmType=="cyr"'>
+                <line dashArray='8,3' fill='orange' width='1m,0.3pt'/>
+                <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' font-style='italic' glow='white' glowWidth='7%,0.5pt'/>
+                <macro ref='standard-bridge'/>
+                <oneWayArrow fill='ncsblue' gap='1900' isLabel='yes' opacity='0.5' path='#arrow' unitsPerLineWidth='100'/>
+            </condition>
+        </layer>
+        <layer name='routerelation'>
+            <label case='assume-title' color='dimgrey' font-size='75%,5pt,18pt' font-style='italic' glow='white' glowWidth='7%,0.5pt'/>
+        </layer>
+    </scale>
+    <scale max='20000'>
+        <layer name='building'>
+            <scale max='6000'>
+                <shape border='lightgrey+black' borderWidth='0.5pt' fill='lightgrey+burlywood' height='yes' opacity='0.5'/>
+                <label case='assume-title' color='grey' font-size='8m,4pt,7pt' glow='white' glowWidth='5%,0.5pt' labelFormat=';+" "{font-style:italic}"("name:en")"+" "addr:housenumber+" "addr:housename' priority='1' wrapWidth='10em' condense='yes'/>
+            </scale>
+            <scale min='6000'>
+                <shape fill='lightgrey+burlywood' height='yes' opacity='0.5'/>
+            </scale>
+        </layer>
+    </scale>
+    <scale max='6000'>
+        <layer name='address'>
+            <label color='dimgrey' font-size='8m,3pt,6pt' glow='white' glowWidth='7%,0.5pt' labelFormat=';+" "{font-style:italic}"("name:en")"+" "addr:housenumber+" "addr:housename' position='point' priority='1'/>
+        </layer>
+    </scale>
+    <scale max='15000'>
+        <layer name='tourism'>
+            <condition exp='OsmType in { "hot","mot","gue" }'>
+                <icon ref='hotel-icon'/>
+                <label case='assume-title' color='darkkhaki' font-size='10m,5pt,8pt' glow='white' glowWidth='7%,0.5pt' priority='-2' wrapWidth='10em'/>
+            </condition>
+        </layer>
+    </scale>
+    <scale max='400000'>
+        <layer name='amenity/major' roadflags='#1F001'>
+            <label case='assume-title' color='grey+orange' wrapWidth='8em'/>
+            <condition exp='OsmType=="aer"'>
+                <icon ref='airport-icon'/>
+                <label font-size='30m,6pt,9pt' priority='-3'/>
+            </condition>
+            <condition exp='OsmType=="run"'>
+                <line fill='lightgrey' width='30m'/>
+                <label font-size='10m,6pt,9pt' maxScale='12000'/>
+            </condition>
+            <condition exp='OsmType=="twy"'>
+                <line fill='lightgrey' width='10m'/>
+                <label font-size='10m,6pt,9pt' maxScale='12000'/>
+            </condition>
+        </layer>
+        <scale max='150000'>
+            <layer name='amenity/minor' roadflags='#1F001'>
+                <label case='assume-title' color='dimgrey' font-size='10m,5pt,8pt' glow='white' glowWidth='7%,0.5pt' priority='-1' wrapWidth='10em'/>
+                <shape fill='#10101010'/>
+                <condition exp='OsmType=="stn"'>
+                    <icon ref='station-icon'/>
+                    <label color='grey+orange' condense='no' font-size='25m,6pt,11pt' font-stretch='condensed' glow='white' glowWidth='7%,0.5pt' priority='-4' wrapWidth='10em'/>
+                    <scale max='75000'>
+                        <shape fill='brown' opacity='0.1'/>
+                    </scale>
+                </condition>
+                <scale max='15000'>
+                    <condition exp='OsmType=="the"'>
+                        <icon ref='theatre-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="cin"'>
+                        <icon ref='cinema-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="pkg"'>
+                        <icon ref='parking-icon'/>
+                        <label case='upper' color='grey+orange' font-size='7m,5pt,8pt' priority='-1' wrapWidth='10em'/>
+                    </condition>
+                    <condition exp='OsmType=="toi"'>
+                        <icon ref='toilet-icon'/>
+                        <label labelFormat=' '/>
+                    </condition>
+                </scale>
+                <scale max='7500'>
+                    <condition exp='OsmType in { "rst","ffd" }'>
+                        <label color='grey+orange' priority='-2' wrapWidth='10em'/>
+                        <icon ref='restaurant-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="caf"'>
+                        <label color='grey+orange' font-size='7m,5pt,8pt' wrapWidth='10em'/>
+                        <icon ref='cafe-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="pub"'>
+                        <label color='grey+orange' priority='-2' wrapWidth='10em'/>
+                        <icon ref='pub-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="bar"'>
+                        <label color='grey+orange' priority='-2' wrapWidth='10em'/>
+                        <icon ref='bar-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="atm"'>
+                        <icon ref='atm-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="pha"'>
+                        <icon ref='pharmacy-icon'/>
+                    </condition>
+                    <condition exp='OsmType=="trf"'>
+                        <label priority='-3'/>
+                        <icon ref='traffic-light-icon'/>
+                    </condition>
+                </scale>
+                <scale max='40000'>
+                    <condition exp='OsmType=="fue"'>
+                        <icon ref='fuel-icon'/>
+                        <label case='upper' color='grey+orange' font-size='7m,5pt,18pt' glow='white' glowWidth='7%,0.5pt' priority='-2' wrapWidth='10em'/>
+                    </condition>
+                    <condition exp='OsmType=="spp"'>
+                        <shape fill='darkgreen' opacity='0.2'/>
+                    </condition>
+                </scale>
+                <scale max='75000'>
+                    <condition exp='OsmType=="jct"'>
+                        <scale max='15000'>
+                            <label color='dimgrey+0.25white' font-size='40m,5pt,8pt' labelFormat='{font-style:italic}_jr+"(";")"' position='point' wrapLines='0' wrapWidth='10em'/>
+                        </scale>
+                        <scale min='15000'>
+                            <label color='dimgrey+0.25white' font-size='40m,5pt,8pt' labelFormat='{font-style:italic}_jr' position='point'/>
+                        </scale>
+                    </condition>
+                </scale>
+                <scale max='7500'>
+                    <condition exp='OsmType in { "bnk","bst","bui","col","fis","gry","kin","pbu","plw","pof","pol","sch","swi","uni" }'>
+                        <condition exp='@=0'>
+                            <label color='grey' font-size='7m,4pt,7pt' labelFormat=';+" "{font-style:italic}"("name:en")"+" "addr:housenumber+" "addr:housename'/>
+                            <icon ref='dot-icon'/>
+                        </condition>
+                        <condition exp='@!=0'>
+                            <label color='grey' font-size='7m,4pt,7pt' labelFormat=';+" "{font-style:italic}"("name:en")"+" "addr:housenumber+" "addr:housename' maxPolygonLabelLength='6'/>
+                        </condition>
+                    </condition>
+                </scale>
+            </layer>
+        </scale>
+    </scale>
+    <layer name='graticule'>
+        <scale max='1500000'>
+            <condition exp='Type lt 3600'>
+                <line fill='lightblue+0.1black' width='0.3pt'/>
+                <label baseline='text-after-edge' color='lightblue+0.1black' font-size='5pt'/>
+            </condition>
+        </scale>
+        <condition exp='Type ge 3600'>
+            <line fill='lightblue+0.1black' width='0.5pt'/>
+            <label baseline='text-after-edge' color='lightblue+0.1black' font-size='6pt'/>
+        </condition>
+    </layer>
+    <scale max='250000'>
+        <layer name='nearby' roadflags='#F000'>
+            <condition exp='_warning==0'>
+                <shape border='ncsgreen' borderWidth='2m,0.6pt' fill='ncsgreen+#00000020'/>
+                <line border='ncsgreen' borderWidth='2m,0.6pt' fill='ncsgreen+#00000020' width='30m,2pt'/>
+                <label case='assume-title' color='ncsgreen' font-size='10m,5pt,8pt' glow='white' glowWidth='7%,0.5pt' priority='-21' wrapWidth='10em'/>
+            </condition>
+            <condition exp='_warning==1'>
+                <shape border='red' borderWidth='2m,0.6pt' fill='url(#warning-hachure)'/>
+                <line border='red' borderWidth='2m,0.6pt' fill='url(#warning-hachure)' width='30m,2pt'/>
+                <label case='assume-title' color='red' font-size='10m,5pt,8pt' glow='white' glowWidth='7%,0.5pt' priority='-21' wrapWidth='10em'/>
+            </condition>
+        </layer>
+    </scale>
+    <labelLayer/>
+    <scale max='40000' min='7500'>
+        <layer name='place/major'>
+            <label duplicate='10000m,512pt' position='point'/>
+            <condition exp='OsmType=="cit"'>
+                <label baseline='alphabetic' case='upper' color='dimgrey' font-size='200m,8pt,24pt' font-weight='bold' letter-spacing='0.2em' opacity='0.4' word-spacing='0.1em'/>
+            </condition>
+            <condition exp='OsmType=="tow"'>
+                <label baseline='alphabetic' case='upper' color='darkslategrey' font-size='150m,6pt,18pt' font-weight='bold' letter-spacing='0.2em' opacity='0.4' word-spacing='0.1em'/>
+            </condition>
+            <condition exp='OsmType=="isl"'>
+                <label case='assume-title' color='darkslategrey' font-size='100m,5pt,12pt' font-style='italic' font-weight='bold' opacity='0.4'/>
+            </condition>
+        </layer>
+    </scale>
+    <scale max='40000'>
+        <layer name='place/minor'>
+            <label duplicate='10000m,512pt' position='point'/>
+            <condition exp='OsmType in { "vil","sub","nei" }'>
+                <label case='assume-title' color='darkslategrey' font-size='100m,5pt,12pt' font-weight='bold' opacity='0.4'/>
+            </condition>
+            <condition exp='OsmType=="ham"'>
+                <label case='assume-title' color='darkslategrey' font-size='75m,4pt,12pt' font-weight='bold' opacity='0.4'/>
+            </condition>
+        </layer>
+    </scale>
+    <layer name='route' roadflags='#F000'>
+        <condition exp='!$ or $==0'>
+            <macro color='ncsred+0.3yellow' ref='route-highlight'/>
+        </condition>
+        <condition exp='$==1'>
+            <macro color='ncsblue' ref='route-highlight'/>
+        </condition>
+        <condition exp='$ gt 1'>
+            <macro color='ncsgreen' ref='route-highlight'/>
+        </condition>
+    </layer>
+    <layer name='waypoint' roadflags='#F000'>
+        <label baseline='central-caps' color='grey+orange' font-size='20m@6000_90m@40000,7pt,12pt' labelFormat='{[padding:20%,0.6pt;background-color:#FFFFFFC0;border-color:orange+grey;border-width:12%,0.7;border-radius:50%,1.2pt};{]}' position='point' priority='-21' wrapLines='0' wrapWidth='30em'/>
+    </layer>
+    <layer name='route-vector' roadflags='#F000'>
+        <line width='27m@6000_180m@40000,18pt'/>
+        <label priority='-9'/>
+        <repeatedSymbol fill='ncsred+0.3yellow' opacity='0.8' gap='0' maxScale='1500000' path='#location-arrow'/>
+    </layer>
+    <layer name='track' roadflags='#F000'>
+        <line fill='purple' width='0.5pt'/>
+    </layer>
+    <layer name='found'>
+        <shape border='ncsred+0.5white' borderWidth='2m,0.6pt' fill='#FFFF0080'/>
+        <line border='ncsred+0.5white' borderWidth='2m,0.6pt' fill='#FFFF0080' width='30m,2pt'/>
+    </layer>
+    <layer name='pushpin'>
+        <label case='assume-title' color='ncsred' colorAttrib='_color' font-size='12m,6pt,12pt' glow='white' glowWidth='7%,0.5pt' priority='-20' wrapWidth='5em'/>
+        <condition exp='@==0'>
+            <condition exp='_iconText'>
+                <icon textAttrib='_iconText' font-size='24m,12pt,72pt' color='ncsred' colorAttrib='_color' canOverlap='true'/>
+            </condition>
+            <condition exp='!_iconText'>
+                <icon ref='pushpin-icon' color='ncsred' colorAttrib='_color' canOverlap='yes' canCombine='no'/>
+                <condition exp='_combined gt 1'>
+                    <icon ref='large-pushpin-icon' color='ncsred'/>
+                    <label position='icon' labelFormat='_combined' color='ncsred' colorAttrib='_color' font-size='12m,6pt,12pt' glow='white' glowWidth='7%,1' priority='-21' wrapWidth='5em'/>
+                </condition>
+            </condition>
+        </condition>
+        <condition exp='@!=0'>
+            <shape border='ncsred' borderWidth='2m,0.6pt' fill='ncsred' opacity='0.5'/>
+            <line fill='ncsred' opacity='0.5' width='5m,0.6pt'/>
+        </condition>
+    </layer>
+    <layer name='gpx' roadflags='#F000'>
+        <line fill='ncsred' width='2m,1pt'/>
+        <label baseline='text-after-edge' case='title' color='ncsred' font-size='6pt'/>
+    </layer>
+    <stratum/>
+    <layer name='range'>
+        <shape fill='ncsyellow' opacity='0.3'/>
+    </layer>
+    <layer name='traffic'>
+        <macro color='red' maxspeed='10' ref='traffic-highlight'/>
+        <macro color='orange' maxspeed='30' ref='traffic-highlight'/>
+        <macro color='green' maxspeed='255' ref='traffic-highlight'/>
+    </layer>
+    <layer name='edit'>
+        <shape fill='ncsyellow' border='ncsyellow+black' opacity='0.3'/>
+        <line fill='ncsyellow+0.25black' width='0.5pt'/>
+    </layer>
+    <labelLayer/>
+
+</CartoTypeStyleSheet>

@@ -42,16 +42,115 @@ namespace SampleApp
             mRenderSurface = EGL.NO_SURFACE;
             InitializeComponent();
 
+            // NOTE: assets must have build action set to 'content' to be found.
+
+            var fp = new CartoType.FrameworkParam();
+            fp.m_map_filename = "Assets\\isle_of_wight.ctm1";
+            bool b = File.Exists(fp.m_map_filename);
+            fp.m_style_sheet_filename = "Assets\\standard.ctstyle";
+            b = File.Exists(fp.m_style_sheet_filename);
+            fp.m_font_filename = "Assets\\DejaVuSans.ttf";
+            b = File.Exists(fp.m_font_filename);
+            m_framework = new CartoType.Framework(fp);
+            m_framework.SetAnimateTransitions(true);
+            var metadata = m_framework.GetMapMetaData(0);
+
             Windows.UI.Core.CoreWindow window = Windows.UI.Xaml.Window.Current.CoreWindow;
 
             window.VisibilityChanged += new TypedEventHandler<CoreWindow, VisibilityChangedEventArgs>((win, args) => OnVisibilityChanged(win, args));
 
             Loaded += (sender, args) => OnPageLoaded(sender, args);
+            Unloaded += (sender, args) => OnPageUnloaded(sender, args);
+
+            PointerPressed += new PointerEventHandler(OnPointerPressed);
+            PointerReleased += new PointerEventHandler(OnPointerReleased);
+            PointerMoved += new PointerEventHandler(OnPointerMoved);
+            PointerWheelChanged += new PointerEventHandler(OnPointerWheelChanged);
+            KeyDown += new KeyEventHandler(OnKeyDown);
+        }
+
+        void OnPointerPressed(object aSender, PointerRoutedEventArgs aEvent)
+        {
+            Windows.UI.Input.PointerPoint p = aEvent.GetCurrentPoint(this);
+            if (p.Properties.IsLeftButtonPressed)
+            {
+                m_map_drag_anchor_x = p.Position.X;
+                m_map_drag_anchor_y = p.Position.Y;
+                aEvent.Handled = true;
+            }
+        }
+        void OnPointerReleased(object aSender, PointerRoutedEventArgs aEvent)
+        {
+            Windows.UI.Input.PointerPoint p = aEvent.GetCurrentPoint(this);
+            if (p.Properties.IsLeftButtonPressed)
+            {
+                m_map_drag_offset_x = 0;
+                m_map_drag_offset_y = 0;
+                aEvent.Handled = true;
+            }
+        }
+
+        void OnPointerMoved(object aSender, PointerRoutedEventArgs aEvent)
+        {
+            Windows.UI.Input.PointerPoint p = aEvent.GetCurrentPoint(this);
+            if (p.Properties.IsLeftButtonPressed)
+            {
+                m_map_drag_offset_x = p.Position.X - m_map_drag_anchor_x;
+                m_map_drag_offset_y = p.Position.Y - m_map_drag_anchor_y;
+                m_framework.Pan((int)-m_map_drag_offset_x,(int)-m_map_drag_offset_y);
+                m_map_drag_offset_x = 0;
+                m_map_drag_offset_y = 0;
+                m_map_drag_anchor_x = p.Position.X;
+                m_map_drag_anchor_y = p.Position.Y;
+                aEvent.Handled = true;
+            }
+        }
+
+        void OnPointerWheelChanged(object aSender, PointerRoutedEventArgs aEvent)
+        {
+            Windows.UI.Input.PointerPoint p = aEvent.GetCurrentPoint(this);
+            int zoom_count = p.Properties.MouseWheelDelta / 120;
+            double zoom = Math.Sqrt(2);
+            if (zoom_count == 0)
+                zoom_count = p.Properties.MouseWheelDelta >= 0 ? 1 : -1;
+            zoom = Math.Pow(zoom, zoom_count);
+            var r = new CartoType.Rect();
+            m_framework.GetView(r, CartoType.CoordType.Screen);
+            if (p.Position.X >= 0 && p.Position.X < r.MaxX && p.Position.Y >= 0 && p.Position.Y < r.MaxY)
+                m_framework.ZoomAt(zoom, p.Position.X, p.Position.Y, CartoType.CoordType.Screen);
+            else
+                m_framework.Zoom(zoom);
+            aEvent.Handled = true;
+        }
+
+        void OnKeyDown(object aSender,KeyRoutedEventArgs aEvent)
+        {
+            switch (aEvent.Key)
+            {
+                case Windows.System.VirtualKey.P:
+                    m_framework.SetPerspective(!m_framework.Perspective());
+                    break;
+                    
+                case Windows.System.VirtualKey.N:
+                    m_framework.SetNightMode(!m_framework.NightMode());
+                    break;
+
+                case Windows.System.VirtualKey.R:
+                    m_framework.Rotate(10);
+                    break;
+
+                case Windows.System.VirtualKey.L:
+                    m_framework.Rotate(-10);
+                    break;
+            }
+
+            aEvent.Handled = true;            
         }
 
         ~OpenGLESPage()
         {
             StopRenderLoop();
+            m_renderer = null;
             DestroyRenderSurface();
         }
 
@@ -60,6 +159,13 @@ namespace SampleApp
             // The SwapChainPanel has been created and arranged in the page layout, so EGL can be initialized.
             CreateRenderSurface();
             StartRenderLoop();
+        }
+
+        private void OnPageUnloaded(object aSender, Windows.UI.Xaml.RoutedEventArgs aEvent)
+        {
+            StopRenderLoop();
+            m_renderer = null;
+            DestroyRenderSurface();
         }
 
         private void OnVisibilityChanged(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.VisibilityChangedEventArgs args)
@@ -141,17 +247,18 @@ namespace SampleApp
                 lock (mRenderSurfaceCriticalSection)
                 {
                     mOpenGLES.MakeCurrent(mRenderSurface);
-                    SimpleRenderer renderer = new SimpleRenderer();
-
+                    m_renderer = new CartoType.MapRenderer(m_framework);
+                    
                     while (action.Status == Windows.Foundation.AsyncStatus.Started)
                     {
                         int panelWidth = 0;
                         int panelHeight = 0;
                         mOpenGLES.GetSurfaceDimensions(mRenderSurface, ref panelWidth, ref panelHeight);
 
-                        // Logic to update the scene could go here
-                        renderer.UpdateWindowSize(panelWidth, panelHeight);
-                        renderer.Draw();
+                        m_framework.Resize(panelWidth, panelHeight);
+                        
+                        // DRAW THE MAP.
+                        m_renderer.Draw();
 
                         // The call to eglSwapBuffers might not be successful (i.e. due to Device Lost)
                         // If the call fails, then we must reinitialize EGL and the GL resources.
@@ -184,5 +291,13 @@ namespace SampleApp
                 mRenderLoopWorker = null;
             }
         }
+
+        private CartoType.Framework m_framework;
+        private CartoType.MapRenderer m_renderer;
+        private double m_map_drag_offset_x;
+        private double m_map_drag_offset_y;
+        private double m_map_drag_anchor_x;
+        private double m_map_drag_anchor_y;
+        private CartoType.Point m_last_point = new CartoType.Point();
     }
 }

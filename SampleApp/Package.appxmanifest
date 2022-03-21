@@ -8,14 +8,14 @@
 
   <Identity
     Name="843f9923-da52-464e-92dc-ed0ee3c2064c"
-    Publisher="CN=james"
+    Publisher="CN=graham"
     Version="0.2018.6.6" />
 
   <mp:PhoneIdentity PhoneProductId="843f9923-da52-464e-92dc-ed0ee3c2064c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>SampleApp</DisplayName>
-    <PublisherDisplayName>james</PublisherDisplayName>
+    <PublisherDisplayName>graham</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
