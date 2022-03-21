@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using GLUWP;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -96,6 +97,12 @@ namespace SampleApp
                     rp.m_y = p2.Y;
                     cs.m_route_point_list.Add(rp);
                     var result = m_framework.StartNavigation(cs);
+                    if (result != CartoType.Result.Success)
+                    {
+                        var s = CartoType.Util.ErrorString(result);
+                        var m = new MessageDialog("Error: " + s);
+                        m.ShowAsync();
+                    }
                 }
                 m_last_point = p2;
             }
