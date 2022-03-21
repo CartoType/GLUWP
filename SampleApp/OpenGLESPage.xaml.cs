@@ -78,6 +78,27 @@ namespace SampleApp
                 m_map_drag_anchor_y = p.Position.Y;
                 aEvent.Handled = true;
             }
+            else if (p.Properties.IsRightButtonPressed)
+            {
+                var p2 = new CartoType.Point(p.Position.X, p.Position.Y);
+                m_framework.ConvertPoint(p2, CartoType.CoordType.Screen, CartoType.CoordType.Degree);
+
+                if (m_last_point.X != 0 && m_last_point.Y != 0)
+                {
+                    var cs = new CartoType.RouteCoordSet();
+                    cs.m_coord_type = CartoType.CoordType.Degree;
+                    var rp = new CartoType.RoutePoint();
+                    rp.m_x = m_last_point.X;
+                    rp.m_y = m_last_point.Y;
+                    cs.m_route_point_list.Add(rp);
+                    rp = new CartoType.RoutePoint();
+                    rp.m_x = p2.X;
+                    rp.m_y = p2.Y;
+                    cs.m_route_point_list.Add(rp);
+                    var result = m_framework.StartNavigation(cs);
+                }
+                m_last_point = p2;
+            }
         }
         void OnPointerReleased(object aSender, PointerRoutedEventArgs aEvent)
         {
