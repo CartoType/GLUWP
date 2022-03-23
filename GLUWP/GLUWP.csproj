@@ -119,8 +119,8 @@
     <EmbeddedResource Include="Properties\GLUWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ANGLE.WindowsStore">
-      <Version>2.1.13</Version>
+    <PackageReference Include="ANGLE.WindowsStore.SDLPal">
+      <Version>2.1.14</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.5</Version>
