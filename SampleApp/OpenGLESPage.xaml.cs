@@ -46,15 +46,15 @@ namespace SampleApp
             // NOTE: assets must have build action set to 'content' to be found.
 
             var fp = new CartoType.FrameworkParam();
-            fp.m_map_filename = "Assets\\isle_of_wight.ctm1";
-            bool b = File.Exists(fp.m_map_filename);
-            fp.m_style_sheet_filename = "Assets\\standard.ctstyle";
-            b = File.Exists(fp.m_style_sheet_filename);
-            fp.m_font_filename = "Assets\\DejaVuSans.ttf";
-            b = File.Exists(fp.m_font_filename);
+            fp.MapFileName = "Assets\\isle_of_wight.ctm1";
+            bool b = File.Exists(fp.MapFileName);
+            fp.StyleSheetFileName = "Assets\\standard.ctstyle";
+            b = File.Exists(fp.StyleSheetFileName);
+            fp.FontFileName = "Assets\\DejaVuSans.ttf";
+            b = File.Exists(fp.FontFileName);
             m_framework = new CartoType.Framework(fp);
-            m_framework.SetAnimateTransitions(true);
-            var metadata = m_framework.GetMapMetaData(0);
+            m_framework.AnimateTransitions = true;
+            var metadata = m_framework.MapMetaData(0);
 
             Windows.UI.Core.CoreWindow window = Windows.UI.Xaml.Window.Current.CoreWindow;
 
@@ -87,15 +87,15 @@ namespace SampleApp
                 if (m_last_point.X != 0 && m_last_point.Y != 0)
                 {
                     var cs = new CartoType.RouteCoordSet();
-                    cs.m_coord_type = CartoType.CoordType.Degree;
+                    cs.CoordType = CartoType.CoordType.Degree;
                     var rp = new CartoType.RoutePoint();
-                    rp.m_x = m_last_point.X;
-                    rp.m_y = m_last_point.Y;
-                    cs.m_route_point_list.Add(rp);
+                    rp.X = m_last_point.X;
+                    rp.Y = m_last_point.Y;
+                    cs.RoutePointList.Add(rp);
                     rp = new CartoType.RoutePoint();
-                    rp.m_x = p2.X;
-                    rp.m_y = p2.Y;
-                    cs.m_route_point_list.Add(rp);
+                    rp.X = p2.X;
+                    rp.Y = p2.Y;
+                    cs.RoutePointList.Add(rp);
                     var result = m_framework.StartNavigation(cs);
                     if (result != CartoType.Result.Success)
                     {
@@ -152,11 +152,11 @@ namespace SampleApp
             switch (aEvent.Key)
             {
                 case Windows.System.VirtualKey.P:
-                    m_framework.SetPerspective(!m_framework.Perspective());
+                    m_framework.Perspective = !m_framework.Perspective;
                     break;
                     
                 case Windows.System.VirtualKey.N:
-                    m_framework.SetNightMode(!m_framework.NightMode());
+                    m_framework.NightMode = !m_framework.NightMode;
                     break;
 
                 case Windows.System.VirtualKey.R:

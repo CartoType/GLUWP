@@ -155,7 +155,7 @@
   <ItemGroup>
     <Reference Include="CartoType, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\CartoType\src\main\single_library\uwp\CartoType\x64\Release\CartoType\CartoType.winmd</HintPath>
+      <HintPath>C:\Users\graham\CartoType\src\main\single_library\uwp\CartoType\x64\Release\CartoType\CartoType.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
